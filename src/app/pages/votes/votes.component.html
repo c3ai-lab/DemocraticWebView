@@ -1,0 +1,55 @@
+<div class="poll-container">
+    <div class="poll-header">
+        <span>Poll:
+            <span>{{request ? request.title : ""}}</span>
+        </span>
+        <span class="material-icons" (click)="openLink()">
+            share
+        </span>
+    </div>
+    <div class="poll-description">
+        <span>{{request ? request.description : ""}}</span>
+    </div>
+    <div class="poll-complete-result" [ngClass]="{'positive-stats': completeResult, 'negative-stats': !completeResult}"
+        *ngIf="showCompleteResult">
+        <span> {{ completeResult ? "This pull request was merged." : "This pull request was rejected."}}</span>
+    </div>
+    <div class="poll-results">
+        <div class="poll-overview">
+            <div class="poll-stats">
+                <div class="positive-stats">
+                    <span class="text-stats">{{request != undefined ? request.votersApproveCount : "0"}}</span>
+                    <span>contributers voted for the pull request</span>
+                </div>
+                <div class="negative-stats">
+                    <span class="text-stats">{{request != undefined ? request.votersDenyCount : "0"}}</span>
+                    <span>contributers voted against the pull request</span>
+                </div>
+            </div>
+            <div class="poll-timer">
+                <span>
+                    Poll runs till: {{request != undefined ? formatterService.formatTime(request.voteEnd) : " "}}
+                    <span class="material-icons">
+                        access_alarms
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="poll-votes">
+            <app-vote *ngFor="let vote of votes;" [vote]="vote"></app-vote>
+        </div>
+        <div class="new-vote" *ngIf="!showCompleteResult">
+            <div>
+                <mat-form-field style="width: 95%;" appearance="fill">
+                    <mat-label>Vote options</mat-label>
+                    <mat-select [formControl]="voteControl" [(value)]="chosenOption" single>
+                        <mat-option *ngFor="let option of voteOptions" [value]="option.value">{{option.text}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <button style="height: 50px;" mat-raised-button color="primary" (click)="createUserVote()">Create
+                voter</button>
+        </div>
+    </div>
+</div>

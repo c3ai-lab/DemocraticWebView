@@ -1,0 +1,33 @@
+<div class="request-container" (click)="showRequestVote()">
+    <div class="request-layout">
+        <div class="repository-header">
+            <span class="material-icons">
+                mediation
+            </span>
+            <span>
+                {{repoPull.pullRequestLink.split("/")[4]}}
+            </span>
+        </div>
+        <div class="request-header">
+            <span class="material-icons">
+                unarchive
+            </span>
+            <span>
+                {{repoPull.title}}
+            </span>
+        </div>
+        <div class="request-body">
+            <div class="request-description">
+                <span>{{repoPull.description}}</span>
+            </div>
+            <div class="request-timer">
+                <span class="material-icons">
+                    how_to_vote
+                </span>
+                <span class="request-date">
+                    {{time}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

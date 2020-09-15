@@ -1,0 +1,46 @@
+.sidebar-container {
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar-element {
+    width: 100%;
+    height: 100px;
+
+    .sidebar-sub-element {
+        text-align: center;
+        height: 75px;
+        width: 90%;
+        display: block;
+        margin: 25px auto;
+        border-radius: 7.5px;
+        cursor: pointer;
+
+        span {
+            color: #73849a;
+            font-size: 20px;
+            padding-top: 26.5px;
+            display: block;
+        }
+
+        &:hover {
+            span {
+                color: #020814 !important;
+            }
+        }
+    }
+
+    .focused-element {
+        background: #f3f9fe;
+
+        span {
+            color: #3880ff;
+        }
+
+        &:hover {
+            span {
+                color: #3880ff !important;
+            }
+        }
+    }
+}

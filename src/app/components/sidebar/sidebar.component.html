@@ -1,0 +1,12 @@
+<div class="sidebar-container">
+    <div class="sidebar-element">
+        <div class="sidebar-sub-element" [ngClass]="{'focused-element':storageService.sidebarState[0]}" (click)="navigateThroughSidebar('polls')">
+            <span>Pull Requests</span>
+        </div>
+    </div>
+<!--     <div class="sidebar-element">
+        <div class="sidebar-sub-element" [ngClass]="{'focused-element':storageService.sidebarState[1]}" (click)="navigateThroughSidebar('polls')">
+            <span>Pull Requests</span>
+        </div>
+    </div> -->
+</div>

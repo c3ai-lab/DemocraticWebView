@@ -1,0 +1,10 @@
+<div class="vote-container">
+    <div class="voter">
+        <span>{{vote.name}}</span>
+    </div>
+    <div class="result">
+        <span class="material-icons" [ngClass]="{'positive': vote.state, 'negative': !vote.state}">
+            {{vote.state ? "check" : "close"}} 
+        </span>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="polls-container">
+    <div class="polls-header">
+        <span>All open pull request polls</span>
+    </div>
+    <div class="polls-elements">
+        <app-repo-pull-request *ngFor="let repo of repoPulls;" [repoPull]="repo"></app-repo-pull-request>
+    </div>
+</div>

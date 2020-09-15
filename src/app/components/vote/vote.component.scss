@@ -1,0 +1,41 @@
+span {
+    color: #586069;
+}
+
+.vote-container {
+    width: 90%;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 1fr 15%;
+    border: 1px solid #586069;
+    border-radius: 10px;
+    margin: 5px auto;
+    cursor: pointer;
+
+    div {
+        text-align: center;
+    }
+
+    .time, .voter {
+        span {
+            display: block;
+            padding-top: 15px;
+            font-size: 16px;
+        }
+    }
+
+    .result {
+        span {
+            font-size: 40px;
+            padding-top: 5px;
+        }
+    }
+
+    .positive {
+        color: #A1E1BC;
+    }
+
+    .negative {
+        color: #ef4d4d;
+    }
+}

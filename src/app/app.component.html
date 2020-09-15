@@ -1,0 +1,18 @@
+<ng-container>
+    <mat-toolbar class="example-header">             
+        Pull request polling interface
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav #sidenav mode="side" opened class="example-sidenav">
+             <app-sidebar></app-sidebar>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+    <mat-toolbar class="example-footer"></mat-toolbar>
+</ng-container>
+<app-loader *ngIf="storageService.loading"></app-loader>
