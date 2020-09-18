@@ -13,6 +13,9 @@ export class PollsPage implements OnInit {
 
   public repoPulls: PullRequest[] = [];
 
+  public openPulls: PullRequest[] = [];
+  public closedPulls: PullRequest[] = [];
+
   constructor(private cons: ConnectionService, private storageService: StorageService, private formatterService: FormatterService) {
     this.storageService.loading = true;
     this.storageService.updateSidebarState(0);
@@ -21,15 +24,15 @@ export class PollsPage implements OnInit {
   ngOnInit(): void {
     this.cons.getPollLength().then(length => {
       this.cons.getPolls(1, length - 1).then(res => {
-        this.repoPulls = res;
-        this.sortRequests();
+        this.openPulls = this.sortRequests(res.filter(pq => this.formatterService.getDateTime(Math.round(Date.now() / 1000)) < pq.voteEnd));
+        this.closedPulls = this.sortRequests(res.filter(pq => this.formatterService.getDateTime(Math.round(Date.now() / 1000)) >= pq.voteEnd));
         this.storageService.loading = false;
       });
     });
   }
 
-  private sortRequests(): void {
-    this.repoPulls.sort((a, b) => {
+  private sortRequests(pqs: PullRequest[]): PullRequest[] {
+    pqs.sort((a, b) => {
       if(a.voteEnd < b.voteEnd) {
         return -1;
       }
@@ -40,6 +43,8 @@ export class PollsPage implements OnInit {
 
       return 0;
     });
+
+    return pqs;
   }
 
 }

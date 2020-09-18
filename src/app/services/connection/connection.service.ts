@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PullRequest } from '../../models/pullrequest.interface';
-import Web3 from 'web3';
 import { FormatterService } from '../formatter/formatter.service';
-import { rejects } from 'assert';
+import EnvironmentVariables from '../../environment.variables'
+import Web3 from 'web3';
+
 
 declare let require: any;
 declare let window: any;
+declare var process: {
+  env: {
+      CONTRACT_ADDRESS: string,
+      PRIVATE_KEY: string,
+      PROVIDER: string
+  }
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConnectionService {
-
-  readonly contractAddress: string = "0xCeAADd95e319aAbF0FA31C910E14f6d9c314Db2B";
-  readonly privateKey = "f1d57d756f7a47c3e70b740acf95b38611a26b81c7a0cff7de872ab306ae35d0";
 
   // web3js envs...
   public account: any;
@@ -28,10 +33,10 @@ export class ConnectionService {
 
   private async init() {
     // set environment variables 
-    this.web3 = new Web3(new Web3.providers.HttpProvider('https://kovan.infura.io/v3/349064b180a64b74a9f432841c494b1f'));
+    this.web3 = new Web3(new Web3.providers.HttpProvider(EnvironmentVariables.PROVIDER));
     this.abi = require('./connection.json');
-    this.contract = new this.web3.eth.Contract(this.abi, this.contractAddress);
-    this.account = this.web3.eth.accounts.privateKeyToAccount(this.privateKey);
+    this.contract = new this.web3.eth.Contract(this.abi, EnvironmentVariables.CONTRACT_ADDRESS);
+    this.account = this.web3.eth.accounts.privateKeyToAccount(EnvironmentVariables.PRIVATE_KEY);
   }
 
 
@@ -58,7 +63,7 @@ export class ConnectionService {
 
         const txObject = {
           nonce: this.web3.utils.toHex(txCount),
-          to: this.contractAddress,
+          to: EnvironmentVariables.CONTRACT_ADDRESS,
           gasLimit: this.web3.utils.toHex(gasLimit),
           gasPrice: this.web3.utils.toHex(this.web3.utils.toWei('11', 'gwei')),
           data: contractData
@@ -66,7 +71,7 @@ export class ConnectionService {
 
         // Sign the transaction
         const tx = new Transaction(txObject, { chain: 'kovan', hardfork: 'istanbul' })
-        const pk = Buffer.from(this.privateKey, 'hex')
+        const pk = Buffer.from(EnvironmentVariables.PRIVATE_KEY, 'hex')
         tx.sign(pk)
 
         const serializedTx = tx.serialize()

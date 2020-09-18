@@ -1,8 +1,22 @@
 <div class="polls-container">
     <div class="polls-header">
-        <span>All open pull request polls</span>
+        <span>All pull request polls</span>
     </div>
-    <div class="polls-elements">
-        <app-repo-pull-request *ngFor="let repo of repoPulls;" [repoPull]="repo"></app-repo-pull-request>
+    <div class="polls-h2">
+        <div>
+            <span>Closed pull requests</span>
+        </div>
+        <div>
+            <span>Open pull requests</span>
+        </div>
+    </div>
+    <div class="polls-overview"> 
+        <div class="polls-elements">
+            <app-repo-pull-request *ngFor="let repo of closedPulls;" [repoPull]="repo"></app-repo-pull-request>
+        </div>
+        <div class="poll-split"></div>
+        <div class="polls-elements">
+            <app-repo-pull-request *ngFor="let repo of openPulls;" [repoPull]="repo"></app-repo-pull-request>
+        </div>
     </div>
 </div>

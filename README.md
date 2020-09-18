@@ -9,9 +9,11 @@ The transfer oracle is available at https://github.com/flensburger88/DemocraticO
 
 # Deployment
 For deploying the blockchain needs to be deployed.
-The smart contract adress has to be configured in src/environment/ConstValues.ts
+The smart contract adress has to be configured in src/app/services/connection/connectin.service.ts
+The ABI File needs to be inserted into src/app/services/connection/connection.json
 
-Additional in this file, the access configuration for the blockchain and the hosting platform need to be configured.
+Additional in the connection.service.ts file, the access configuration for the blockchain and the hosting platform need to be configured.
+With an entered private key in this file, the user of the web application is able to perform "fake votes" for demonstrating the functionality.
 A sample configuration is available in the file (this is of cause not valid ;) )
 
 

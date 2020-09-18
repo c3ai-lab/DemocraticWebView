@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "request-polling-layout"
+    }
+  },
+  "defaultProject": "request-polling-layout",
+  "cli": {
+    "analytics": false
+  }
 }
