@@ -21,7 +21,10 @@ export class VotesPage implements OnInit {
 
   public chosenOption: any = {};
   public voteControl = new FormControl();
-  public voteOptions: any[] = [{ value: 1, text: 'Yes, accept request' }, { value: 0, text: 'No, reject request' }];
+  public voteOptions: any[] = [
+    { value: 1, text: 'Yes, accept request' },
+    { value: 0, text: 'No, reject request' }
+  ];
 
   public showCompleteResult: boolean = false;
   public completeResult: boolean = false;
@@ -77,7 +80,7 @@ export class VotesPage implements OnInit {
     this.storageService.loading = true;
     this.cons.getPoll(index).then(async res => {
       this.request = res;
-      if(res.voteEnd < this.formatterService.getDateTime(Date.now() / 1000)) {
+      if (res.voteEnd < this.formatterService.getDateTime(Date.now() / 1000)) {
         this.showCompleteResult = true;
         await this.checkCompleteResult(index);
       }
