@@ -33,7 +33,7 @@ A sample configuration is available in the file (this is of cause not valid ;) )
 
 ## Start the webapplication
 
-```cd client/request-polling-layout```
+```cd client/DemocraticWebView```
 
 ```ng serve```
 
