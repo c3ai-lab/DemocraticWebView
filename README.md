@@ -1,4 +1,4 @@
-# DemocraticOracle
+# DemocraticWebView
 Since the development of the git protocol, the amount of open-source project increases year by year.
 For supporting this, many hosting platforms exist, which allow string of a project master and collaborating with other developers.
 But in all hosting platforms, the project depends on the behavior of the project owner.
